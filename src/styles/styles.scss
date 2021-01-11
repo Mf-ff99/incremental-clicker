@@ -1,10 +1,13 @@
 @import 'nav';
 @import 'variables';
 @import 'mixins';
+@import 'hero';
 
-.hero{
-    // @include flexCenter();
-    // background: $primaryBG;
-    font-size: 300px;
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     height: 100vh;
+    background-color: red;
 }

@@ -1,0 +1,9 @@
+@import 'mixins';
+@import 'variables';
+
+.hero{
+    @include flexCenter();
+    background: $primaryBG;
+    font-size: 300px;
+    height: 100vh;
+}
