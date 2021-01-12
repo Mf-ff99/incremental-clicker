@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Animated } from 'react-animated-css'
+import {useSelector} from 'react-redux'
 import Shop from './Shop'
 
 // Incremental Clicker
@@ -34,6 +35,8 @@ const PlayerHud = (props) => {
 }
 
 const GameCanvas = (props) => {
+    const carrotReducer = useSelector(state => state.carrotReducer)
+  console.log(carrotReducer)
     const [openShop, setOpenShop] = useState(false)
 
     return (
