@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { increment, decrement, incrementWater, decrementWater } from '../../Actions/index'
+import { incrementWater, decrementCarrot } from '../../Actions/index'
 import waterCounter from '../../Reducers/waterCounter'
 import carrotReducer from '../../Reducers/counter'
 
@@ -134,10 +134,19 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
 
     }
 
+    const carrotReducer = useSelector(state => state.carrotReducer)
     const buyItem = (itemName) => {
         switch(itemName){
             case 'Water Harvester':
-                if(carrotReducer >= 10 && waterCounter <= 10) dispatch(decrementWater(10))
+                    console.log(carrotReducer)
+                    if(carrotReducer > 9) {
+                        dispatch(decrementCarrot(10))
+                        
+                        setInterval(function() {
+                            dispatch(incrementWater(1))
+                        }, 20000)
+                    }
+                break;
             default: 
                 return;
         }
