@@ -1,0 +1,38 @@
+@import 'variables';
+@import 'mixins';
+
+.game-view{
+    @include flexCenter();
+    flex-direction: column;
+    width: 100vw;
+}
+
+.game-canvas{
+    @include flexCenter();
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 100vw;
+}
+
+.player-hud{
+    background: rgba(255, 255, 255, 0);
+box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+backdrop-filter: blur( 30.0px );
+-webkit-backdrop-filter: blur( 4.0px );
+border-radius: 10px;
+max-width: 500px;
+    ul{
+        list-style: none;
+        @include flexCenter();
+        justify-content: space-around;
+        height: 70px;
+        min-width: 400px;
+        padding: 10px;
+    }
+}
+
+.player-hud-container {
+ 
+}
+
+

@@ -15,10 +15,10 @@ const UL = styled.ul`
     padding-left: 0;
     z-index: 1000;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    max-width: 700px;
+    font-weight: 400;
+    max-width: 800px;
     padding-right: 80px;
     padding-top: 10px;
 
@@ -27,7 +27,7 @@ const UL = styled.ul`
         padding: 18px 10px;
         /* min-width: 110px; */
         &:nth-child(4) {
-            min-width: 120px;
+            /* min-width: 120px; */
         }
     }
 
@@ -44,7 +44,7 @@ const UL = styled.ul`
     }
 
     .logo-text-left a {
-        width: 100px;
+        width: 200px;
         display: flex;
         flex-wrap: wrap;
 
@@ -126,23 +126,20 @@ class MobileNav extends React.Component {
         return (
             <UL id='mobile-nav' open={open}>
             <li className="right-side-nav">
-                <a href="/work">NavItem</a>
+                <a href="/game">Let's Play</a>
 
             </li>
             <li className="right-side-nav">
-                <a href='/tools'>NavItem</a>
+                <a href='/instructions'>Instructions</a>
             </li>
             <li className="right-side-nav">
-                <a href='/jordy-klein'>NavItem</a>
+                <a href='/credits'>Credits</a>
             </li>
             <li className="right-side-nav">
-                <a href="/contact">Contact</a>
+                <a href="/about">About the Dev</a>
 
             </li>
-            <li className="right-side-nav end">
-                <a href="/about">About</a>
-
-            </li>
+           
         </UL>
     )
 }

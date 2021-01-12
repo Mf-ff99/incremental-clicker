@@ -2,12 +2,22 @@
 @import 'variables';
 @import 'mixins';
 @import 'hero';
+@import 'game';
+@import 'shop';
 
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    background-color: red;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+    // height: 100vh;
+    // background-color: red;
+}
+
+.shop-btn {
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    // border: 1px solid red;
 }

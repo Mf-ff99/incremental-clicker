@@ -105,11 +105,48 @@ a {
       -ms-flex-pack: center;
           justify-content: center;
   background: #b65599;
-  font-size: 300px;
+  font-size: 50px;
   height: 100vh;
 }
 
-main {
+.start-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  max-width: 800px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.start-menu button {
+  margin-left: 20px;
+  background-color: white;
+  border: none;
+  color: #333;
+  min-width: 120px;
+  height: 30px;
+  padding: 10px;
+  -webkit-transition: .6s ease-in-out;
+  transition: .6s ease-in-out;
+}
+
+.start-menu button:hover {
+  color: #f22852;
+  background-color: whitesmoke;
+  -webkit-transition: .7s ease-in-out;
+  transition: .7s ease-in-out;
+  cursor: pointer;
+}
+
+.game-view {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,6 +160,117 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100vh;
+  width: 100vw;
+}
+
+.game-canvas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  min-width: 100vw;
+}
+
+.player-hud {
+  background: rgba(255, 255, 255, 0);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.player-hud ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 70px;
+  min-width: 400px;
+  padding: 10px;
+}
+
+.shop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: absolute;
+  left: 150px;
+  top: 200px;
+}
+
+.shop ul.shop-ul {
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.shop ul.shop-ul li.shop-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  margin-left: 10px;
+}
+
+.shop ul.shop-ul li.shop-item:hover {
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  color: whitesmoke;
+  background-color: #333;
+  border-radius: 8px;
+}
+
+.shop-btn {
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */
