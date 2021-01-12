@@ -25,7 +25,7 @@ const PlayerHud = (props) => {
                         Stamina : {props.inventory.stamina}/10
                     </li>
                     <li>
-                        Oranges : {props.inventory.oranges}/100
+                        Carrots : {props.inventory.carrots}/100
                     </li>
                 </ul>
             </div>
@@ -35,15 +35,18 @@ const PlayerHud = (props) => {
 
 const GameCanvas = (props) => {
     const [openShop, setOpenShop] = useState(false)
+
     return (
         <div className='game-canvas'>
             <div className='player-hud-container'>
-            <Shop openShop={openShop} setOpenShop={setOpenShop} />
+                <Shop openShop={openShop} setOpenShop={setOpenShop} />
                 <PlayerHud inventory={props.inventory} />
             </div>
             <div className='game-container'>
-                <div>
-                <i class="fas fa-carrot fa-4x"></i>
+                <div className='gathering-container'>
+                    <i class='fas fa-tint fa-3x' onClick={() => props.setInventory('water')}></i>
+                    <i onClick={() => props.setInventory('carrot')} class="fas fa-carrot fa-4x"></i>
+
                 </div>
             </div>
 
@@ -55,18 +58,51 @@ const Game = () => {
     const [start, setStart] = useState(false)
     const [water, setWater] = useState(10)
     const [stamina, setStamina] = useState(10)
-    const [oranges, setOranges] = useState(100)
+    const [carrots, setCarrots] = useState(10)
+    const [carrotMultiplied, setCarrotMulitplied] = useState(1)
+    const [carrotTicks, setCarrotTicks] = useState(0)
 
     const inventory = {
-        water: 10,
-        stamina: 10,
-        oranges: 10,
+        water: water,
+        stamina: null,
+        carrots: carrots,
+    }
+
+    const carrotMulitplier = () => {
+        if (carrots > 50) {
+            setCarrotMulitplied(1.2)
+        }
+    }
+
+    if (carrotTicks >= 8) {
+        console.log(carrotTicks)
+        setCarrotTicks(0)
+    }
+    if (carrotTicks > 7) {
+        setWater(water - 1)
+    }
+
+    const setInventory = (item) => {
+
+        // console.log(carrotTicks)
+        switch (item) {
+            case 'water':
+                if (water < 10) setWater(water + 1)
+                break;
+            case 'carrot':
+                if (water > 2) setCarrots(carrots + 1)
+                setCarrotTicks(carrotTicks + 1)
+                break;
+            default:
+                return;
+        }
+
     }
 
     return (
         <div className='game-view'>
             {start ? ' ' : <h2>Ready to play?</h2>}            {start ? '' : <button type='click' onClick={() => setStart(true)}>Yes!</button>}
-            {start ? <GameCanvas inventory={inventory} /> : ''}
+            {start ? <GameCanvas inventory={inventory} setInventory={setInventory} /> : ''}
         </div>
     )
 }

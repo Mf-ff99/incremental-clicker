@@ -93,11 +93,11 @@ const MobileNav = ({ open }, props) => {
 
         },
         {
-            name: 'OrangePicker',
+            name: 'Carrot Picker Machine',
             price: 25
         },
         {
-            name: 'StealthGrow',
+            name: 'Stealth Grow',
             price: 50
         },
     ]

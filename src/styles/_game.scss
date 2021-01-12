@@ -56,5 +56,15 @@ max-width: 500px;
         transform: skewY(20deg);
     }
 }
+.fa-tint {
+    margin-right: 20px;
+    color: lightblue;
+    cursor: pointer;
+    transition: .8s ease-in-oute;
+    &:active {
+        transition: .8s ease-in-oute;
+        transform: skewX(15deg);
+    }
+}
 
 

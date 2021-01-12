@@ -251,6 +251,21 @@ a {
           transform: skewY(20deg);
 }
 
+.fa-tint {
+  margin-right: 20px;
+  color: lightblue;
+  cursor: pointer;
+  -webkit-transition: .8s ease-in-oute;
+  transition: .8s ease-in-oute;
+}
+
+.fa-tint:active {
+  -webkit-transition: .8s ease-in-oute;
+  transition: .8s ease-in-oute;
+  -webkit-transform: skewX(15deg);
+          transform: skewX(15deg);
+}
+
 .shop {
   display: -webkit-box;
   display: -ms-flexbox;
