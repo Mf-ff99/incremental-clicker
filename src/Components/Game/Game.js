@@ -10,7 +10,7 @@ import Shop from './Shop'
 // 
 
 const PlayerHud = (props) => {
-    console.log(props.inventory)
+    // console.log(props.inventory)
     return (
         <Animated animationIn='bounceInLeft'>
             <div className='player-hud'>
@@ -39,14 +39,13 @@ const GameCanvas = (props) => {
     return (
         <div className='game-canvas'>
             <div className='player-hud-container'>
-                <Shop openShop={openShop} setOpenShop={setOpenShop} />
+                <Shop setWaterHarvesters={props.setWaterHarvesters} inventory={props.inventory} openShop={openShop} setOpenShop={setOpenShop} />
                 <PlayerHud inventory={props.inventory} />
             </div>
             <div className='game-container'>
                 <div className='gathering-container'>
                     <i class='fas fa-tint fa-3x' onClick={() => props.setInventory('water')}></i>
                     <i onClick={() => props.setInventory('carrot')} class="fas fa-carrot fa-4x"></i>
-
                 </div>
             </div>
 
@@ -62,10 +61,22 @@ const Game = () => {
     const [carrotMultiplied, setCarrotMulitplied] = useState(1)
     const [carrotTicks, setCarrotTicks] = useState(0)
 
+    // factor out inventory to its own file
     const inventory = {
         water: water,
         stamina: null,
         carrots: carrots,
+    }
+
+    let waterharvester = 0
+
+    const setWaterHarvesters = () => {
+        setInterval(function() {
+            setWater(water + waterharvester)
+        }, 5000)
+        waterharvester++
+        console.log(waterharvester)
+        if(carrots >= 10) setCarrots(carrots - 10)
     }
 
     // factor out carrot functions to helper file
@@ -101,7 +112,7 @@ const Game = () => {
 
     }
     // the shop needs to check against the inventory to see if an item can be bought
-    // the shop can live in its own file?
+    // the shop can live in its own file
     // water harvester
     // carrot picker
     // stealth grow
@@ -112,7 +123,7 @@ const Game = () => {
     return (
         <div className='game-view'>
             {start ? ' ' : <h2>Ready to play?</h2>}            {start ? '' : <button type='click' onClick={() => setStart(true)}>Yes!</button>}
-            {start ? <GameCanvas inventory={inventory} setInventory={setInventory} /> : ''}
+            {start ? <GameCanvas setWaterHarvesters={setWaterHarvesters} inventory={inventory} setInventory={setInventory} /> : ''}
         </div>
     )
 }

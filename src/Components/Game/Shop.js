@@ -46,7 +46,7 @@ margin-top: 10px;
 `;
 const Shop = (props) => {
     const [open, setOpen] = useState(false)
-    
+       
 
     return (
         <>
@@ -56,7 +56,7 @@ const Shop = (props) => {
             {!props.openShop ? <button className='shop-btn' type='click' onClick={() => props.setOpenShop(true)}>Shop ></button> : ''}
             
             </StyledGearBurger>
-            <MobileNav open={open} />
+            <MobileNav setWaterHarvesters={props.setWaterHarvesters} inventory={props.inventory} open={open} />
         </>
     )
 }

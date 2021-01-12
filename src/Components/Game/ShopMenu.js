@@ -85,24 +85,34 @@ border-radius: 10px;
     
 `
 
-const MobileNav = ({ open }, props) => {
+const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
+    
+    
     const items = [
         {
             name: 'Water Harvester',
             price: 10,
+            isBought: false,
+
 
         },
         {
             name: 'Carrot Picker Machine',
-            price: 25
+            price: 25,
+            isBought: false,
+
         },
         {
             name: 'Stealth Grow',
-            price: 50
+            price: 50,
+            isBought: false,
+
         },
         {
             name: 'A Bigger Bucket',
             price: 15,
+            isBought: false,
+
         },
         {
             name: 'A Bigger Backpack',
@@ -111,13 +121,38 @@ const MobileNav = ({ open }, props) => {
         {
             name: 'A Carrot-Gathering Slave',
             price: 10,
+            isBought: false,
+
         }
     ]
+
+    const checkItemIsBought = () => {
+
+    }
+
+    const buyItem = (itemName) => {
+        switch(itemName){
+            case 'Water Harvester':
+                setWaterHarvesters()
+            default: 
+                return;
+        }
+    }
+
+    const checkItemCanBePurchased = (item) => {
+        let i
+        for(i = 0; i < items.length; i++) {
+            if(item[i].name === item && inventory.carrots >= item[i].price) {
+                // inventory.carrots - item[i].price
+                // set functions for purchasing an item in game
+            }
+        }
+    }
 
     return (
         <UL open={open}>
             {items.map((item) =>
-                <li className='shop-item'>{item.name} : {item.price}</li>
+                <li className='shop-item' onClick={() => buyItem(item.name)}>{item.name} : {item.price}</li>
             )}
 
         </UL>
