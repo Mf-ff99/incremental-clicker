@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 import React from 'react'
-import { HashLink } from 'react-router-hash-link'
-
 
 const UL = styled.ul`
     list-style: none;
@@ -9,34 +7,45 @@ const UL = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    max-width: 180px;
+    background: rgba(255, 255, 255, 0);
+box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+backdrop-filter: blur( 30.0px );
+-webkit-backdrop-filter: blur( 4.0px );
+border-radius: 10px;
+    max-width: 300px;
     min-width: 10%;
-    // min-height: 800px;
     margin-left: 0;
-    padding-left: 20px !important;
-    /* z-index: ${({open}) => open ? 1000 : -1}; */
-    visibility: ${({open}) => open ? '' : 'hidden !important'}; 
-
-    li a {
-        color: black !important;
-        padding: 18px 10px;
+    visibility: ${({ open }) => open ? '' : 'hidden !important'}; 
+    display: flex;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-top: 230px;
+        position: fixed;
+        transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
         
-    }
-
-    li a:hover {
-        border-bottom: none;
-    }
-
-
-    img {
-        padding: 0;
-        height: 90px;
-         
-    }
+        left: 0;
+        height: fit-content;
+        
+        padding: 15px 15px 0 0;
+        transition: .3s ease-in-out;
     
-    a {
-        color: black !important;
-    }
+        
+        li.shop-item {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: .5s ease-in-out;
+            margin-left: 10px;
+            padding-left: 30px;
+
+            &:hover {
+                transition: .5s ease-in-out;
+                color: whitesmoke;
+                background-color: #333;
+                border-radius: 8px;
+            }
+        }
 
     .logo-text-left a {
         width: 100px;
@@ -56,23 +65,6 @@ const UL = styled.ul`
         right: 0;
         
     }
-
-        display: flex;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        background-color: white;
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        position: fixed;
-        transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
-        
-        left: 0;
-        height: fit-content;
-        
-        padding: 15px 15px 0 0;
-        transition: .3s ease-in-out;
 
     a {
         color: black !important;
@@ -95,22 +87,27 @@ const UL = styled.ul`
 
 const MobileNav = ({ open }, props) => {
     const items = [
-        { name: 'Water Harvester',
-          price: 10,
-          
+        {
+            name: 'Water Harvester',
+            price: 10,
+
         },
-        { name: 'OrangePicker',
-            price: 25 },
-        { name: 'StealthGrow',
-        price: 50 },
+        {
+            name: 'OrangePicker',
+            price: 25
+        },
+        {
+            name: 'StealthGrow',
+            price: 50
+        },
     ]
 
     return (
         <UL open={open}>
-                    {items.map((item) => 
-                        <li className='shop-item'>{item.name} : {item.price}</li>
-                    )}
-            
+            {items.map((item) =>
+                <li className='shop-item'>{item.name} : {item.price}</li>
+            )}
+
         </UL>
     )
 

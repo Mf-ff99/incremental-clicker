@@ -16,7 +16,7 @@ const PlayerHud = (props) => {
             <div className='player-hud'>
 
             </div>
-        <div className='player-hud'>
+            <div className='player-hud'>
                 <ul>
                     <li>
                         Water : {props.inventory.water}/10
@@ -33,30 +33,20 @@ const PlayerHud = (props) => {
     )
 }
 
-// const Shop = (props) => {
-    
-    
-    
-//     return (
-//             <div className='shop'>
-//                 <ul className='shop-ul'>
-//                     {items.map((item) => 
-//                         <li className='shop-item'>{item.name} : {item.price}</li>
-//                     )}
-//                 </ul>
-//             </div>
-//     )
-// }
-
 const GameCanvas = (props) => {
     const [openShop, setOpenShop] = useState(false)
     return (
         <div className='game-canvas'>
-            <Shop openShop={openShop} setOpenShop={setOpenShop} />
             <div className='player-hud-container'>
-                <PlayerHud inventory={props.inventory}/>
+            <Shop openShop={openShop} setOpenShop={setOpenShop} />
+                <PlayerHud inventory={props.inventory} />
+            </div>
+            <div className='game-container'>
+                <div>
+                <i class="fas fa-carrot fa-4x"></i>
                 </div>
-            
+            </div>
+
         </div>
     )
 }
@@ -66,19 +56,19 @@ const Game = () => {
     const [water, setWater] = useState(10)
     const [stamina, setStamina] = useState(10)
     const [oranges, setOranges] = useState(100)
-    
+
     const inventory = {
         water: 10,
         stamina: 10,
         oranges: 10,
     }
+
     return (
         <div className='game-view'>
             {start ? ' ' : <h2>Ready to play?</h2>}            {start ? '' : <button type='click' onClick={() => setStart(true)}>Yes!</button>}
-            {start ? <GameCanvas inventory={inventory}/> : ''}
+            {start ? <GameCanvas inventory={inventory} /> : ''}
         </div>
     )
-
 }
 
 export default Game

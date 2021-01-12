@@ -7,7 +7,7 @@ margin-top: 10px;
     /* width: 2rem;
     height: 2rem; */
     top: 15px;
-    left: 300px;
+    margin-left: 60px;
     /* margin-right: 10px; */
     display: flex;
     justify-content: space-around;

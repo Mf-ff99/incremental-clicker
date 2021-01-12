@@ -9,8 +9,9 @@
 
 .game-canvas{
     @include flexCenter();
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    flex-wrap: wrap;
     min-width: 100vw;
 }
 
@@ -21,6 +22,7 @@ backdrop-filter: blur( 30.0px );
 -webkit-backdrop-filter: blur( 4.0px );
 border-radius: 10px;
 max-width: 500px;
+
     ul{
         list-style: none;
         @include flexCenter();
@@ -32,7 +34,27 @@ max-width: 500px;
 }
 
 .player-hud-container {
- 
+    @include flexCenter();
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orange-circle {
+    width: 100px;
+      height: 100px;
+      background: orange;
+      border-radius: 50%
+}
+
+.fa-carrot {
+    color: orange;
+    cursor: pointer;
+    transition: .8s ease-in-oute;
+    &:active {
+        transition: .8s ease-in-oute;
+        transform: skewY(20deg);
+    }
 }
 
 

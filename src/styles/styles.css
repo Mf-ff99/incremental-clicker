@@ -173,12 +173,14 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   min-width: 100vw;
 }
 
@@ -208,6 +210,45 @@ a {
   height: 70px;
   min-width: 400px;
   padding: 10px;
+}
+
+.player-hud-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.orange-circle {
+  width: 100px;
+  height: 100px;
+  background: orange;
+  border-radius: 50%;
+}
+
+.fa-carrot {
+  color: orange;
+  cursor: pointer;
+  -webkit-transition: .8s ease-in-oute;
+  transition: .8s ease-in-oute;
+}
+
+.fa-carrot:active {
+  -webkit-transition: .8s ease-in-oute;
+  transition: .8s ease-in-oute;
+  -webkit-transform: skewY(20deg);
+          transform: skewY(20deg);
 }
 
 .shop {
@@ -270,7 +311,23 @@ a {
 .shop-btn {
   background: white;
   border: 1px solid black;
+  background: rgba(255, 255, 255, 0);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+  min-width: 100px;
+  -webkit-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
+}
+
+.shop-btn:hover {
+  background: black;
+  color: white;
+  -webkit-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
 }
 /*# sourceMappingURL=styles.css.map */
