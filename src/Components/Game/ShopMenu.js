@@ -100,6 +100,18 @@ const MobileNav = ({ open }, props) => {
             name: 'Stealth Grow',
             price: 50
         },
+        {
+            name: 'A Bigger Bucket',
+            price: 15,
+        },
+        {
+            name: 'A Bigger Backpack',
+            price: 10,
+        },
+        {
+            name: 'A Carrot-Gathering Slave',
+            price: 10,
+        }
     ]
 
     return (

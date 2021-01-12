@@ -98,6 +98,14 @@ const Game = () => {
         }
 
     }
+    // the shop needs to check against the inventory to see if an item can be bought
+    // the shop can live in its own file?
+    // water harvester
+    // carrot picker
+    // stealth grow
+    // bigger bucket
+    // bigger backpack
+    // carrot slave
 
     return (
         <div className='game-view'>
