@@ -68,6 +68,8 @@ const Game = () => {
         carrots: carrots,
     }
 
+    // factor out carrot functions to helper file
+
     const carrotMulitplier = () => {
         if (carrots > 50) {
             setCarrotMulitplied(1.2)
@@ -78,7 +80,7 @@ const Game = () => {
         console.log(carrotTicks)
         setCarrotTicks(0)
     }
-    if (carrotTicks > 7) {
+    if (carrotTicks > 7 && water > 0) {
         setWater(water - 1)
     }
 
