@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Animated } from 'react-animated-css'
 import {useDispatch, useSelector} from 'react-redux'
 import { incrementCarrot, decrementCarrot, incrementWater, decrementWater } from '../../Actions/index'
+import carrotMaxCounter from '../../Reducers/inventoryCounter'
 
 import Shop from './Shop'
 
@@ -17,6 +18,7 @@ let carrotLimit = 100
 const PlayerHud = (props) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
     const waterCounter = useSelector(state => state.waterCounter)
+    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
     // console.log(props.inventory)
     return (
         <Animated animationIn='bounceInLeft'>
@@ -32,7 +34,7 @@ const PlayerHud = (props) => {
                         Stamina : {props.inventory.stamina}/10
                     </li>
                     <li>
-                        Carrots : {carrotReducer}/100
+                        Carrots : {carrotReducer}/{carrotMaxCounter}
                     </li>
                 </ul>
             </div>

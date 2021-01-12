@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { incrementWater, decrementCarrot } from '../../Actions/index'
+import { incrementWater, decrementCarrot, incrementCarrotMaxCounter } from '../../Actions/index'
 import waterCounter from '../../Reducers/waterCounter'
 import carrotReducer from '../../Reducers/counter'
 
@@ -141,12 +141,18 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                     console.log(carrotReducer)
                     if(carrotReducer > 9) {
                         dispatch(decrementCarrot(10))
-                        
                         setInterval(function() {
                             dispatch(incrementWater(1))
                         }, 20000)
                     }
                 break;
+
+            case 'A Bigger Backpack': 
+            console.log('ran')
+                    if(carrotReducer > 9) {
+                        dispatch(decrementCarrot(10))
+                        dispatch(incrementCarrotMaxCounter(100))
+                    }
             default: 
                 return;
         }
