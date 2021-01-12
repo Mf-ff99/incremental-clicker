@@ -1,12 +1,12 @@
-const carrotReducer = (state = 10, action) => {
+const staminaCounter = (state = 0, action) => {
     switch(action.type) {
-        case 'INCREMENT/carrot':
+        case 'INCREMENT/stamina':
             return state + action.payload
-        case 'DECREMENT/carrot':
+        case 'DECREMENT/stamina':
             return state - action.payload
         default:
             return state;
     }
 }
 
-export default carrotReducer
+export default staminaCounter

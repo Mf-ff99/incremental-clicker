@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { increment, decrement, incrementWater, decrementWater } from '../../Actions/index'
+import waterCounter from '../../Reducers/waterCounter'
+import carrotReducer from '../../Reducers/counter'
 
 const UL = styled.ul`
     list-style: none;
@@ -20,7 +24,7 @@ border-radius: 10px;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        margin-top: 230px;
+        margin-top: 800px;
         position: fixed;
         transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
         
@@ -86,7 +90,7 @@ border-radius: 10px;
 `
 
 const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
-    
+    const dispatch = useDispatch()
     
     const items = [
         {
@@ -133,7 +137,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const buyItem = (itemName) => {
         switch(itemName){
             case 'Water Harvester':
-                setWaterHarvesters()
+                if(carrotReducer >= 10 && waterCounter <= 10) dispatch(decrementWater(10))
             default: 
                 return;
         }

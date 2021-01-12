@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Animated } from 'react-animated-css'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { incrementCarrot, decrementCarrot, incrementWater, decrementWater } from '../../Actions/index'
+
 import Shop from './Shop'
 
 // Incremental Clicker
@@ -11,6 +13,8 @@ import Shop from './Shop'
 // 
 
 const PlayerHud = (props) => {
+    const carrotReducer = useSelector(state => state.carrotReducer)
+    const waterCounter = useSelector(state => state.waterCounter)
     // console.log(props.inventory)
     return (
         <Animated animationIn='bounceInLeft'>
@@ -20,13 +24,13 @@ const PlayerHud = (props) => {
             <div className='player-hud'>
                 <ul>
                     <li>
-                        Water : {props.inventory.water}/10
+                        Water : {waterCounter}/10
                     </li>
                     <li>
                         Stamina : {props.inventory.stamina}/10
                     </li>
                     <li>
-                        Carrots : {props.inventory.carrots}/100
+                        Carrots : {carrotReducer}/100
                     </li>
                 </ul>
             </div>
@@ -35,8 +39,10 @@ const PlayerHud = (props) => {
 }
 
 const GameCanvas = (props) => {
-    const carrotReducer = useSelector(state => state.carrotReducer)
-  console.log(carrotReducer)
+    // const carrotReducer = useSelector(state => state.carrotReducer)
+    // const waterCounter = useSelector(state => state.waterCounter)
+  const dispatch = useDispatch()
+//   const dispatchWater = useDispatch(waterCounter)
     const [openShop, setOpenShop] = useState(false)
 
     return (
@@ -47,8 +53,8 @@ const GameCanvas = (props) => {
             </div>
             <div className='game-container'>
                 <div className='gathering-container'>
-                    <i class='fas fa-tint fa-3x' onClick={() => props.setInventory('water')}></i>
-                    <i onClick={() => props.setInventory('carrot')} class="fas fa-carrot fa-4x"></i>
+                    <i class='fas fa-tint fa-3x' onClick={() => dispatch(incrementWater(1))}></i>
+                    <i onClick={() => dispatch(incrementCarrot(1))} class="fas fa-carrot fa-4x"></i>
                 </div>
             </div>
 
