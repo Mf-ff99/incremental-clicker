@@ -73,7 +73,7 @@ const GameCanvas = (props) => {
                 <div className='gathering-container'>
                     <i class='fas fa-tint fa-3x' onClick={() => (waterCounter < waterMaxCounter) ? dispatch(incrementWater(1)) : null}></i>
                     <i onClick={() => {
-                        if(carrotReducer < carrotMaxCounter) {
+                        if(carrotReducer < carrotMaxCounter && waterCounter > 2) {
                             dispatch(incrementCarrot(1)) 
                         }
                         carrotTick++ 

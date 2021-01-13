@@ -3,8 +3,9 @@ const waterCounter = (state = 10, action) => {
         case 'INCREMENT/water':
             return state + action.payload
         case 'DECREMENT/water':
-            return state - action.payload
-        default:
+            if(state - action.payload > 0) return state - action.payload
+            return state;
+            default:
             return state;
     }
 }
