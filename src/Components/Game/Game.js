@@ -31,7 +31,7 @@ const PlayerHud = (props) => {
             <div className='player-hud'>
                 <ul>
                     <li>
-                        Water : {waterCounter}/{waterMaxCounter}
+                        Water : {Math.round(waterCounter)}/{waterMaxCounter}
                     </li>
                     <li>
                         Stamina : {props.inventory.stamina}/10
@@ -60,6 +60,9 @@ const GameCanvas = (props) => {
   }
   if(waterCounter >= waterMaxCounter) {
       dispatch(decrementWater(waterCounter%2))
+  }
+  if(carrotReducer >= carrotMaxCounter) {
+      dispatch(decrementCarrot(carrotReducer%2))
   }
 //   const dispatchWater = useDispatch(waterCounter)
     const [openShop, setOpenShop] = useState(false)

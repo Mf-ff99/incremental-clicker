@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter, incrementCarrot, decrementWater } from '../../Actions/index'
 
@@ -89,6 +89,18 @@ border-radius: 10px;
 `
 
 const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
+    const [gathererInterval, setGathererInterval] = useState(null)
+    // const [carrotCount, setCarrotCount] = useState(0)
+    // const [maxCarrotCount, setMaxCarrotCount] = useState(0)
+
+    const waterMaxCounter = useSelector(state => state.waterMaxCounter)
+    const waterCounter = useSelector(state => state.waterCounter)
+    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
+    const carrotReducer = useSelector(state => state.carrotReducer)
+
+    // setCarrotCount(carrotReducer)
+    // setMaxCarrotCount(carrotMax)
+
     const dispatch = useDispatch()
 
     const items = [
@@ -132,22 +144,22 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const checkItemIsBought = () => {
 
     }
-    const waterMaxCounter = useSelector(state => state.waterMaxCounter)
-    const waterCounter = useSelector(state => state.waterCounter)
-    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
-    const carrotReducer = useSelector(state => state.carrotReducer)
-    
+  
+
+
     const buyItem = (itemName) => {
+        let intervalID = 0
+
         switch (itemName) {
             case 'Water Harvester':
                 if (carrotReducer > 9) {
-                    console.log('water counter', waterCounter)
                     dispatch(decrementCarrot(10))
                     if (waterCounter < waterMaxCounter) {
                         setInterval(function () {
                             dispatch(incrementWater(.5))
-                        }, 5000)
+                        }, 4000)
                     } else if (waterCounter === waterMaxCounter) {
+                        console.log('water counter', waterCounter)
                         clearInterval()
                     }
                 }
@@ -166,49 +178,54 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 }
                 break;
             case 'Carrot Picker Machine':
-                if (carrotReducer > 10) {
+                if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
+                    if (carrotReducer < carrotMaxCounter-1 && waterCounter > 2) {
+                        setInterval(function () {
+                            dispatch(incrementCarrot(1))
+                            dispatch(decrementWater(.3))
+                        }, 1000)
+                    } else if (carrotReducer >= waterMaxCounter || waterCounter < 2) {
+                        console.log('water counter', waterCounter)
+                        // dispatch(decrementCarrot(carrotReducer%waterMaxCounter))
+                        clearInterval()
+                    }
                 }
-                const carrotGatherer = setInterval(carrotPicker, 4000)
-                
-                
+                break;
+            default:
                 return;
-                default:
-                    return;
-                }
-                
-                function carrotPicker() {
-                    if (carrotReducer < carrotMaxCounter && waterCounter > 2) {
-                        console.log('dispatched', carrotReducer, carrotMaxCounter, waterCounter)
-                        dispatch(incrementCarrot(3))
-                        dispatch(decrementWater(.5))
-                    }
-                    if(carrotReducer > carrotMaxCounter) {
-                        console.log('interval cleared')
-                        clearInterval(this.carrotGatherer)
-                    }
-         }
+        }
+
 
     }
 
-const checkItemCanBePurchased = (item) => {
-    let i
-    for (i = 0; i < items.length; i++) {
-        if (item[i].name === item && inventory.carrots >= item[i].price) {
-            // inventory.carrots - item[i].price
-            // set functions for purchasing an item in game
+    // if (carrotReducer >= carrotMaxCounter) {
+    //     for (let i = 0; i < 100; i++) {
+    //         clearInterval(gathererInterval)
+    //     }
+    //     console.log('intervals cleared')
+
+    // }
+
+
+    const checkItemCanBePurchased = (item) => {
+        let i
+        for (i = 0; i < items.length; i++) {
+            if (item[i].name === item && inventory.carrots >= item[i].price) {
+                // inventory.carrots - item[i].price
+                // set functions for purchasing an item in game
+            }
         }
     }
-}
 
-return (
-    <UL open={open}>
-        {items.map((item) =>
-            <li className='shop-item' onClick={() => buyItem(item.name)}>{item.name} : {item.price}</li>
-        )}
+    return (
+        <UL open={open}>
+            {items.map((item) =>
+                <li className='shop-item' onClick={() => buyItem(item.name)}>{item.name} : {item.price}</li>
+            )}
 
-    </UL>
-)
+        </UL>
+    )
 
 }
 
