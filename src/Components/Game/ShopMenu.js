@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { incrementWater, decrementCarrot, incrementCarrotMaxCounter } from '../../Actions/index'
+import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter} from '../../Actions/index'
 import waterCounter from '../../Reducers/waterCounter'
 import carrotReducer from '../../Reducers/counter'
 
@@ -138,7 +138,6 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const buyItem = (itemName) => {
         switch(itemName){
             case 'Water Harvester':
-                    console.log(carrotReducer)
                     if(carrotReducer > 9) {
                         dispatch(decrementCarrot(10))
                         setInterval(function() {
@@ -148,11 +147,16 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 break;
 
             case 'A Bigger Backpack': 
-            console.log('ran')
                     if(carrotReducer > 9) {
                         dispatch(decrementCarrot(10))
                         dispatch(incrementCarrotMaxCounter(100))
                     }
+            case 'A Bigger Bucket': 
+                    if(carrotReducer > 14) {
+                        dispatch(decrementCarrot(14))
+                        dispatch(incrementWaterMaxCounter(30))
+                    }
+            
             default: 
                 return;
         }
