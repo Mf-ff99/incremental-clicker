@@ -36,4 +36,18 @@ export const incrementWaterMaxCounter = (int) => {
         payload: int,
     }
 }
+export const incrementCarrotMultiplier = (int) => {
+    return {
+        type: 'INCREMENT/carrot/multiplier',
+        payload: int,
+    }
+}
+export const decrementCarrotMultiplier = (int) => {
+    return {
+        type: 'DECREMENT/carrot/multiplier',
+        payload: int,
+    }
+}
+
+
 

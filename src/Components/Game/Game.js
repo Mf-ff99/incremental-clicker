@@ -37,7 +37,7 @@ const PlayerHud = (props) => {
                         Stamina : {props.inventory.stamina}/10
                     </li>
                     <li>
-                        Carrots : {carrotReducer}/{carrotMaxCounter}
+                        Carrots : {Math.round(carrotReducer)}/{carrotMaxCounter}
                     </li>
                 </ul>
             </div>
