@@ -143,7 +143,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                         dispatch(decrementCarrot(10))
                         setInterval(function() {
                             dispatch(incrementWater(1))
-                        }, 20000)
+                        }, 8000)
                     }
                 break;
 
