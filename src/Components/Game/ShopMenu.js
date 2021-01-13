@@ -143,19 +143,13 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                     if(carrotReducer > 9) {
                         console.log('water counter', waterCounter)
                         dispatch(decrementCarrot(10))
-<<<<<<< HEAD
-                        setInterval(function() {
-                            dispatch(incrementWater(1))
-                        }, 8000)
-=======
                         if(waterCounter < waterMaxCounter) {
                             setInterval(function() {
                                 dispatch(incrementWater(1))
                             }, 20000)
-                        } else {
-                            clearInterval(0)
+                        } else if(waterCounter === waterMaxCounter {
+                            clearInterval()
                         }
->>>>>>> 8b57c905d2d14b17a703621bca843690dca3d2e2
                     }
                 break;
 
