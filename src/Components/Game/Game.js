@@ -15,7 +15,7 @@ import Shop from './Shop'
 // TODO
 //
 
-let carrotLimit = 100
+// let carrotLimit = 100
 
 const PlayerHud = (props) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
@@ -50,11 +50,16 @@ const GameCanvas = (props) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
     const waterCounter = useSelector(state => state.waterCounter)
     const waterMaxCounter = useSelector(state => state.waterMaxCounter)
-  const dispatch = useDispatch()
+    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
+
+    const dispatch = useDispatch()
   if(carrotTick > 8) {
       console.log(carrotTick)
       dispatch(decrementWater(1))
       carrotTick = 0
+  }
+  if(waterCounter >= waterMaxCounter) {
+      dispatch(decrementWater(waterCounter%2))
   }
 //   const dispatchWater = useDispatch(waterCounter)
     const [openShop, setOpenShop] = useState(false)
@@ -68,7 +73,7 @@ const GameCanvas = (props) => {
                 <div className='gathering-container'>
                     <i class='fas fa-tint fa-3x' onClick={() => (waterCounter < waterMaxCounter) ? dispatch(incrementWater(1)) : null}></i>
                     <i onClick={() => {
-                        if(carrotReducer < carrotLimit) {
+                        if(carrotReducer < carrotMaxCounter) {
                             dispatch(incrementCarrot(1)) 
                         }
                         carrotTick++ 

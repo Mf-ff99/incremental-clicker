@@ -204,6 +204,10 @@ a {
   padding: 20px;
 }
 
+.game-canvas .inventory h6, .game-canvas h4 {
+  font-size: 12px;
+}
+
 .player-hud {
   background: rgba(255, 255, 255, 0);
   -webkit-box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);

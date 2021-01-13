@@ -5,7 +5,7 @@ const Inventory = (props) => {
     return (
         <div className="inventory wrapper">
   <div className="box box1">
-    <h6>Water Harvesters</h6>
+    <h4>Water Harvesters</h4>
   </div>
   <div className="box box1">
     <h6>a bigger backpack</h6>
