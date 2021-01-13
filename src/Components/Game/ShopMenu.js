@@ -138,18 +138,6 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
     
     const buyItem = (itemName) => {
-
-        const carrotGatherer = setInterval(() => {
-            console.log('this is carrot reducer', carrotReducer)
-            if (carrotReducer < carrotMaxCounter && waterCounter > 2) {
-                console.log('dispatched', carrotReducer, carrotMaxCounter, waterCounter)
-                dispatch(incrementCarrot(3))
-                dispatch(decrementWater(.5))
-            } else {
-                clearInterval();
-            }
-        }, 4000)
-
         switch (itemName) {
             case 'Water Harvester':
                 if (carrotReducer > 9) {
@@ -181,25 +169,26 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer > 10) {
                     dispatch(decrementCarrot(10))
                 }
-                const carrotGatherer = setInterval(() => {
-                    console.log('this is carrot reducer', carrotReducer)
+                const carrotGatherer = setInterval(carrotPicker, 4000)
+                
+                
+                return;
+                default:
+                    return;
+                }
+                
+                function carrotPicker() {
                     if (carrotReducer < carrotMaxCounter && waterCounter > 2) {
                         console.log('dispatched', carrotReducer, carrotMaxCounter, waterCounter)
                         dispatch(incrementCarrot(3))
                         dispatch(decrementWater(.5))
-                    } else {
-                        clearInterval();
                     }
-                }, 4000)
-                if(carrotReducer > carrotMaxCounter) {
-                    clearInterval(carrotGatherer)
-                }
-                
-        
-        return;
-            default:
-                return;
-        }
+                    if(carrotReducer > carrotMaxCounter) {
+                        console.log('interval cleared')
+                        clearInterval(this.carrotGatherer)
+                    }
+         }
+
     }
 
 const checkItemCanBePurchased = (item) => {
