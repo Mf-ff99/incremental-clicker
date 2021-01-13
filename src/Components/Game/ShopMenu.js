@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter, incrementCarrot, decrementWater, incrementCarrotMultiplier } from '../../Actions/index'
-import Logic from './Logic'
+import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter, incrementCarrot, decrementWater, incrementCarrotMultiplier, incrementWaterMultiplier } from '../../Actions/index'
+// import Logic from './Logic'
+// import carrotMultiplier from '../../Reducers/carrotMultiplier'
 
 
 const UL = styled.ul`
@@ -98,6 +99,8 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const waterCounter = useSelector(state => state.waterCounter)
     const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
     const carrotReducer = useSelector(state => state.carrotReducer)
+    const carrotMultiplier = useSelector(state => state.carrotMultiplier)
+    const waterMultiplier = useSelector(state => state.waterMultiplier)
 
     // setCarrotCount(carrotReducer)
     // setMaxCarrotCount(carrotMax)
@@ -156,12 +159,9 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
                     if (waterCounter < waterMaxCounter) {
-                        setInterval(function () {
-                            dispatch(incrementWater(.5))
-                        }, 4000)
-                    } else if (waterCounter === waterMaxCounter) {
-                        console.log('water counter', waterCounter)
-                        clearInterval()
+                        
+                            incrementWaterMultiplier(1)
+                        
                     }
                 }
                 break;
@@ -169,7 +169,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
             case 'A Bigger Backpack':
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
-                    dispatch(incrementCarrotMaxCounter(100))
+                    dispatch(incrementCarrotMaxCounter(500))
                 }
                 break;
             case 'A Bigger Bucket':
@@ -182,35 +182,29 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 // introduce oil as a means of production
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
-                    if (carrotReducer < carrotMaxCounter-1){
-                        setInterval(function () {
-                          
-                                dispatch(incrementCarrot(1))
-                                // dispatch(decrementWater(.3))
-                            
-                        }, 1000)
-                    
-                    } else if (carrotReducer >= waterMaxCounter || waterCounter < 2) {
+                    dispatch(incrementCarrotMultiplier(.00005))
+                        
+                    }
+                    else if (carrotReducer >= waterMaxCounter || waterCounter < 2) {
                         console.log('water counter', waterCounter)
                         // dispatch(decrementCarrot(carrotReducer%waterMaxCounter))
                         clearInterval()
                     }
-                }
+                
                 break;
                 case 'A Carrot-Gathering Slave':
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
-                    dispatch(incrementCarrotMultiplier(1.2))
-                    Logic()
-                    // if (carrotReducer <= carrotMaxCounter) {
-                    //     setInterval(function () {
-                    //         dispatch(incrementCarrot(.5))
-                    //         dispatch(decrementWater(.2))
-                    //     }, 2000)
-                    // } else {
-                    //     console.log('slave counter', waterCounter)
-                    //     clearInterval()
-                    // }
+                    dispatch(incrementCarrotMultiplier(.00005))
+                    // Logic()
+                    if (carrotReducer <= carrotMaxCounter) {
+                        setInterval(function () {
+                            dispatch(decrementWater(1))
+                        }, 5000)
+                    } else {
+                        console.log('slave counter', waterCounter)
+                        clearInterval()
+                    }
                 }
                 break;
 

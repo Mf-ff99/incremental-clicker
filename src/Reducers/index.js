@@ -3,7 +3,8 @@ import waterCounter from './waterCounter'
 import staminaCounter from './staminaCounter'
 import carrotMaxCounter from './inventoryCounter'
 import waterMaxCounter from './waterMaxCounter'
-import carrotMulitplier from './carrotMultiplier'
+import carrotMultiplier from './carrotMultiplier'
+import waterMultiplier from './waterMultiplier'
 import { combineReducers } from 'redux'
 
 const allReducers = combineReducers({
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     staminaCounter,
     carrotMaxCounter,
     waterMaxCounter,
-    carrotMulitplier,
+    carrotMultiplier,
+    waterMultiplier,
 })
 
 export default allReducers

@@ -48,6 +48,18 @@ export const decrementCarrotMultiplier = (int) => {
         payload: int,
     }
 }
+export const incrementWaterMultiplier = (int) => {
+    return {
+        type: 'INCREMENT/water/multiplier',
+        payload: int,
+    }
+}
+export const decrementWaterMultiplier = (int) => {
+    return {
+        type: 'DECREMENT/water/multiplier',
+        payload: int,
+    }
+}
 
 
 

@@ -3,6 +3,7 @@ import { Animated } from 'react-animated-css'
 import {useDispatch, useSelector} from 'react-redux'
 import { incrementCarrot, decrementCarrot, incrementWater, decrementWater } from '../../Actions/index'
 import carrotMaxCounter from '../../Reducers/inventoryCounter'
+import waterMultiplier from '../../Reducers/waterMultiplier'
 import Inventory from './Inventory'
 // import waterMaxCounter from '../../Reducers/waterMaxCounter'
 
@@ -47,13 +48,15 @@ const PlayerHud = (props) => {
 
 let carrotTick = 0
 const GameCanvas = (props) => {
+    const [openShop, setOpenShop] = useState(false)
     const carrotReducer = useSelector(state => state.carrotReducer)
     const waterCounter = useSelector(state => state.waterCounter)
     const waterMaxCounter = useSelector(state => state.waterMaxCounter)
     const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
+    const carrotMulitplierReducer = useSelector(state => state.carrotMultiplier)
 
     const dispatch = useDispatch()
-  if(carrotTick > 8) {
+  if(carrotTick > 5) {
       console.log(carrotTick)
       dispatch(decrementWater(1))
       carrotTick = 0
@@ -64,8 +67,15 @@ const GameCanvas = (props) => {
   if(carrotReducer >= carrotMaxCounter) {
       dispatch(decrementCarrot(carrotReducer%2))
   }
+
+ 
+//   setInterval(() => {
+//     if (waterCounter > 2 && carrotReducer < carrotMaxCounter) {
+//         dispatch(incrementCarrot(carrotMulitplierReducer - 1))
+//         // dispatch(incrementWater(2%carrotMulitplierReducer))
+//     }
+// }, 5000);
 //   const dispatchWater = useDispatch(waterCounter)
-    const [openShop, setOpenShop] = useState(false)
     return (
         <div className='game-canvas'>
             <div className='player-hud-container'>
@@ -99,6 +109,14 @@ const Game = () => {
     const [carrotMultiplied, setCarrotMulitplied] = useState(1)
     const [carrotTicks, setCarrotTicks] = useState(0)
 
+    const carrotReducer = useSelector(state => state.carrotReducer)
+    const waterCounter = useSelector(state => state.waterCounter)
+    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
+    const waterMaxCounter = useSelector(state => state.waterMaxCounter)
+    const carrotMultiplierReducer = useSelector(state => state.carrotMultiplier)
+    
+    const waterMultiplier = useSelector(state => state.waterMultiplier)
+    const dispatch = useDispatch()
     // factor out inventory to its own file
     const inventory = {
         water: water,
@@ -116,7 +134,18 @@ const Game = () => {
         console.log(waterharvester)
         if(carrots >= 10) setCarrots(carrots - 10)
     }
+    if(carrotMaxCounter >= carrotReducer){
 
+        setInterval(() => {
+            if (carrotReducer < carrotMaxCounter) {
+                dispatch(incrementCarrot(carrotMultiplierReducer * carrotReducer))
+                dispatch(incrementWater(waterMultiplier * waterCounter))
+            }
+        }, 10000);
+    } else {
+        clearTimeout()
+    }
+        
     // factor out carrot functions to helper file
 
     const carrotMulitplier = () => {
