@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { incrementWater, decrementCarrot, incrementCarrotMaxCounter } from '../../Actions/index'
+import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter} from '../../Actions/index'
 import waterCounter from '../../Reducers/waterCounter'
 import carrotReducer from '../../Reducers/counter'
+import waterMaxCounter from '../../Reducers/waterMaxCounter'
 
 const UL = styled.ul`
     list-style: none;
@@ -133,26 +134,42 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const checkItemIsBought = () => {
 
     }
-
+    const waterMaxCounter = useSelector(state => state.waterMaxCounter)
+    const waterCounter = useSelector(state => state.waterCounter)
     const carrotReducer = useSelector(state => state.carrotReducer)
     const buyItem = (itemName) => {
         switch(itemName){
             case 'Water Harvester':
-                    console.log(carrotReducer)
                     if(carrotReducer > 9) {
+                        console.log('water counter', waterCounter)
                         dispatch(decrementCarrot(10))
+<<<<<<< HEAD
                         setInterval(function() {
                             dispatch(incrementWater(1))
                         }, 8000)
+=======
+                        if(waterCounter < waterMaxCounter) {
+                            setInterval(function() {
+                                dispatch(incrementWater(1))
+                            }, 20000)
+                        } else {
+                            clearInterval(0)
+                        }
+>>>>>>> 8b57c905d2d14b17a703621bca843690dca3d2e2
                     }
                 break;
 
             case 'A Bigger Backpack': 
-            console.log('ran')
                     if(carrotReducer > 9) {
                         dispatch(decrementCarrot(10))
                         dispatch(incrementCarrotMaxCounter(100))
                     }
+            case 'A Bigger Bucket': 
+                    if(carrotReducer > 14) {
+                        dispatch(decrementCarrot(14))
+                        dispatch(incrementWaterMaxCounter(30))
+                    }
+            
             default: 
                 return;
         }

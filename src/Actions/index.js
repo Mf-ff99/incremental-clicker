@@ -29,3 +29,11 @@ export const incrementCarrotMaxCounter = (int) => {
         payload: int,
     }
 }
+
+export const incrementWaterMaxCounter = (int) => {
+    return {
+        type: 'INCREMENT/water/max',
+        payload: int,
+    }
+}
+
