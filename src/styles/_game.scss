@@ -7,12 +7,21 @@
     width: 100vw;
 }
 
+
 .game-canvas{
     @include flexCenter();
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
     min-width: 100vw;
+    .game-container{
+        @include flexCenter();
+        flex-direction: column;
+        // padding: 10px;
+    }
+    .gathering-container{
+        padding: 20px;
+    }
 }
 
 .player-hud{
@@ -66,5 +75,22 @@ max-width: 500px;
         transform: skewX(15deg);
     }
 }
+  
+  .box {
+    background-color: lightgrey;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+  }
+  
+  .wrapper {
+    width: 600px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-auto-flow: column;
+  }
 
 

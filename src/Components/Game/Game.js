@@ -3,7 +3,8 @@ import { Animated } from 'react-animated-css'
 import {useDispatch, useSelector} from 'react-redux'
 import { incrementCarrot, decrementCarrot, incrementWater, decrementWater } from '../../Actions/index'
 import carrotMaxCounter from '../../Reducers/inventoryCounter'
-import waterMaxCounter from '../../Reducers/waterMaxCounter'
+import Inventory from './Inventory'
+// import waterMaxCounter from '../../Reducers/waterMaxCounter'
 
 import Shop from './Shop'
 
@@ -48,6 +49,7 @@ let carrotTick = 0
 const GameCanvas = (props) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
     const waterCounter = useSelector(state => state.waterCounter)
+    const waterMaxCounter = useSelector(state => state.waterMaxCounter)
   const dispatch = useDispatch()
   if(carrotTick > 8) {
       console.log(carrotTick)
@@ -56,7 +58,6 @@ const GameCanvas = (props) => {
   }
 //   const dispatchWater = useDispatch(waterCounter)
     const [openShop, setOpenShop] = useState(false)
-
     return (
         <div className='game-canvas'>
             <div className='player-hud-container'>
@@ -65,7 +66,7 @@ const GameCanvas = (props) => {
             </div>
             <div className='game-container'>
                 <div className='gathering-container'>
-                    <i class='fas fa-tint fa-3x' onClick={() => (waterCounter < 10) ? dispatch(incrementWater(1)) : null}></i>
+                    <i class='fas fa-tint fa-3x' onClick={() => (waterCounter < waterMaxCounter) ? dispatch(incrementWater(1)) : null}></i>
                     <i onClick={() => {
                         if(carrotReducer < carrotLimit) {
                             dispatch(incrementCarrot(1)) 
@@ -74,8 +75,8 @@ const GameCanvas = (props) => {
                     }}
                         className="fas fa-carrot fa-4x"></i>
 
-                    
                 </div>
+                    <Inventory />
             </div>
 
         </div>

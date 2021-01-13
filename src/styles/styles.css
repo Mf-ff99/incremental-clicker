@@ -184,6 +184,26 @@ a {
   min-width: 100vw;
 }
 
+.game-canvas .game-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.game-canvas .gathering-container {
+  padding: 20px;
+}
+
 .player-hud {
   background: rgba(255, 255, 255, 0);
   -webkit-box-shadow: 0 8px 32px 0 rgba(175, 180, 253, 0.37);
@@ -264,6 +284,26 @@ a {
   transition: .8s ease-in-oute;
   -webkit-transform: skewX(15deg);
           transform: skewX(15deg);
+}
+
+.box {
+  background-color: lightgrey;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.wrapper {
+  width: 600px;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  -ms-grid-columns: (100px)[5];
+      grid-template-columns: repeat(5, 100px);
+  -ms-grid-rows: (100px)[5];
+      grid-template-rows: repeat(5, 100px);
+  grid-auto-flow: column;
 }
 
 .shop {

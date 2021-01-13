@@ -145,9 +145,9 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                         dispatch(decrementCarrot(10))
                         if(waterCounter < waterMaxCounter) {
                             setInterval(function() {
-                                dispatch(incrementWater(1))
-                            }, 20000)
-                        } else if(waterCounter === waterMaxCounter {
+                                dispatch(incrementWater(.5))
+                            }, 5000)
+                        } else if(waterCounter === waterMaxCounter) {
                             clearInterval()
                         }
                     }
@@ -158,12 +158,13 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                         dispatch(decrementCarrot(10))
                         dispatch(incrementCarrotMaxCounter(100))
                     }
+                    break;
             case 'A Bigger Bucket': 
                     if(carrotReducer > 14) {
                         dispatch(decrementCarrot(14))
                         dispatch(incrementWaterMaxCounter(30))
                     }
-            
+                    break;
             default: 
                 return;
         }
