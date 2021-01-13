@@ -127,21 +127,26 @@ const Game = () => {
     let waterharvester = 0
 
     const setWaterHarvesters = () => {
-        setInterval(function() {
-            setWater(water + waterharvester)
-        }, 5000)
-        waterharvester++
-        console.log(waterharvester)
-        if(carrots >= 10) setCarrots(carrots - 10)
+        // setInterval(function() {
+        //     setWater(water + waterharvester)
+        // }, 5000)
+        // waterharvester++
+        // console.log(waterharvester)
+        // if(carrots >= 10) setCarrots(carrots - 10)
     }
-    if(carrotMaxCounter >= carrotReducer){
 
-        setInterval(() => {
-            if (carrotReducer < carrotMaxCounter) {
-                dispatch(incrementCarrot(carrotMultiplierReducer * carrotReducer))
-                dispatch(incrementWater(waterMultiplier * waterCounter))
-            }
-        }, 10000);
+    
+
+    if(carrotMaxCounter >= carrotReducer){
+        if(waterCounter >= 1) {
+
+            setInterval(() => {
+                if (carrotReducer < carrotMaxCounter) {
+                    dispatch(incrementCarrot(carrotMultiplierReducer * carrotReducer))
+                    dispatch(incrementWater(waterMultiplier * waterCounter))
+                }
+            }, 10000);
+        }
     } else {
         clearTimeout()
     }
