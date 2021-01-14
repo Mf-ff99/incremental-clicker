@@ -85,7 +85,12 @@ max-width: 500px;
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
-  }
+    &:hover {
+        background-color: cornflowerblue;
+        box-shadow: 2px 5px solid black;
+        transition: .3s ease-in-out;
+    }
+}
   
   .wrapper {
     width: 600px;

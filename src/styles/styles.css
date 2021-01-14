@@ -298,6 +298,14 @@ a {
   font-size: 150%;
 }
 
+.box:hover {
+  background-color: cornflowerblue;
+  -webkit-box-shadow: 2px 5px solid black;
+          box-shadow: 2px 5px solid black;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
 .wrapper {
   width: 600px;
   display: -ms-grid;

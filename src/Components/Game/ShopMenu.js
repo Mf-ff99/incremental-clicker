@@ -168,7 +168,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
             case 'Water Harvester':
                 if (carrotReducer >= 10) {
                     dispatch(decrementCarrot(10))
-                    dispatch(incrementWaterMultiplier(.1))
+                    dispatch(incrementWaterMultiplier(.05))
                     setWaterHarvesterCount(waterHarvesterCount+1)
                 }
                 break;
