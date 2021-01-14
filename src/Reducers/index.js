@@ -5,6 +5,7 @@ import carrotMaxCounter from './inventoryCounter'
 import waterMaxCounter from './waterMaxCounter'
 import carrotMultiplier from './carrotMultiplier'
 import waterMultiplier from './waterMultiplier'
+import waterAttritionCounter from './waterAttritionCounter'
 import { combineReducers } from 'redux'
 
 const allReducers = combineReducers({
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
     waterMaxCounter,
     carrotMultiplier,
     waterMultiplier,
+    waterAttritionCounter,
 })
 
 export default allReducers

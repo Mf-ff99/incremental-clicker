@@ -60,6 +60,18 @@ export const decrementWaterMultiplier = (int) => {
         payload: int,
     }
 }
+export const incrementWaterAttritionCounter = (int) => {
+    return {
+        type: 'INCREMENT/water/attrition',
+        payload: int,
+    }
+}
+export const decrementWaterAttritionCounter = (int) => {
+    return {
+        type: 'DECREMENT/water/attrition',
+        payload: int,
+    }
+}
 
 
 

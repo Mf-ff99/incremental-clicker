@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter, incrementCarrot, decrementWater, incrementCarrotMultiplier, incrementWaterMultiplier, decrementWaterMultiplier } from '../../Actions/index'
+import { incrementWater, decrementCarrot, incrementCarrotMaxCounter, incrementWaterMaxCounter, incrementCarrot, decrementWater, incrementCarrotMultiplier, incrementWaterMultiplier, decrementWaterMultiplier, incrementWaterAttritionCounter } from '../../Actions/index'
 // import Logic from './Logic'
 // import carrotMultiplier from '../../Reducers/carrotMultiplier'
 
@@ -101,6 +101,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const carrotReducer = useSelector(state => state.carrotReducer)
     const carrotMultiplier = useSelector(state => state.carrotMultiplier)
     const waterMultiplier = useSelector(state => state.waterMultiplier)
+    const waterAttritionCounter = useSelector(state => state.waterAttritionCounter)
     
 
     // setCarrotCount(carrotReducer)
@@ -182,7 +183,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
                     dispatch(incrementCarrotMultiplier(.00005))
-                        
+                    dispatch(incrementWaterAttritionCounter(.00005))
                     }
                     else if (carrotReducer >= waterMaxCounter || waterCounter < 2) {
                         console.log('water counter', waterCounter)
@@ -196,9 +197,11 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                     dispatch(decrementCarrot(10))
                     dispatch(incrementCarrotMultiplier(.00005))
                     dispatch(decrementWater(2))
-                    if(waterCounter > 10) {
-                        dispatch(decrementWaterMultiplier(.00007))
-                    }
+                    dispatch(incrementWaterAttritionCounter(.00002))
+
+                    // if(waterCounter > 10) {
+                    //     dispatch(decrementWaterMultiplier(.00007))
+                    // }
                     // Logic()
                     // if (carrotReducer <= carrotMaxCounter) {
                     //     setInterval(function () {

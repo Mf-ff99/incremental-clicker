@@ -3,6 +3,7 @@ import { Animated } from 'react-animated-css'
 import {useDispatch, useSelector} from 'react-redux'
 import { incrementCarrot, decrementCarrot, incrementWater, decrementWater } from '../../Actions/index'
 import carrotMaxCounter from '../../Reducers/inventoryCounter'
+// import waterAttritionCounter from '../../Reducers/waterAttritionCounter'
 import waterMultiplier from '../../Reducers/waterMultiplier'
 import Inventory from './Inventory'
 // import waterMaxCounter from '../../Reducers/waterMaxCounter'
@@ -114,6 +115,7 @@ const Game = () => {
     const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
     const waterMaxCounter = useSelector(state => state.waterMaxCounter)
     const carrotMultiplierReducer = useSelector(state => state.carrotMultiplier)
+    const waterAttritionCounter = useSelector(state => state.waterAttritionCounter)
     
     const waterMultiplier = useSelector(state => state.waterMultiplier)
     const dispatch = useDispatch()
@@ -138,14 +140,15 @@ const Game = () => {
     
 
     if(carrotMaxCounter >= carrotReducer){
-        if(waterCounter >= 1) {
+        if(waterCounter >= 0) {
 
             setInterval(() => {
                 if (carrotReducer < carrotMaxCounter) {
                     dispatch(incrementCarrot(carrotMultiplierReducer * carrotReducer))
-                    dispatch(incrementWater(waterMultiplier * waterCounter))
+                    dispatch(incrementWater(waterMultiplier * waterCounter - waterAttritionCounter))
                 }
             }, 10000);
+
         }
     } else {
         clearTimeout()
