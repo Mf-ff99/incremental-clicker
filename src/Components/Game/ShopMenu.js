@@ -92,36 +92,43 @@ border-radius: 10px;
 
 const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     const [gathererInterval, setGathererInterval] = useState(null)
-    // const [carrotCount, setCarrotCount] = useState(0)
-    // const [maxCarrotCount, setMaxCarrotCount] = useState(0)
+    const [waterHarvesterCount, setWaterHarvesterCount] = useState(0)
+    const [carrotPickerCount, setCarrotPickerCount] = useState(0)
+    const [biggerBuckets, setBiggerBuckets] = useState(0)
+    const [carrotGatheringSlaves, setCarrotGatheringSlaves] = useState(0)
+    const [biggerBackpacks, setBiggerBackpacks] = useState(0)
+    const [carrotSlaveCount, setCarrotSlaveCount] = useState(0)
 
     const waterMaxCounter = useSelector(state => state.waterMaxCounter)
     const waterCounter = useSelector(state => state.waterCounter)
-    const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
+    // const carrotMaxCounter = useSelector(state => state.carrotMaxCounter)
     const carrotReducer = useSelector(state => state.carrotReducer)
-    const carrotMultiplier = useSelector(state => state.carrotMultiplier)
-    const waterMultiplier = useSelector(state => state.waterMultiplier)
-    const waterAttritionCounter = useSelector(state => state.waterAttritionCounter)
-    
+    // const carrotMultiplier = useSelector(state => state.carrotMultiplier)
+    // const waterMultiplier = useSelector(state => state.waterMultiplier)
+    // const waterAttritionCounter = useSelector(state => state.waterAttritionCounter)
+
 
     // setCarrotCount(carrotReducer)
     // setMaxCarrotCount(carrotMax)
 
     const dispatch = useDispatch()
 
+    const purchasedItemCount = () => {
+    }
+
     const items = [
         {
             name: 'Water Harvester',
             price: 10,
             isBought: false,
-
+            count: waterHarvesterCount,
 
         },
         {
             name: 'Carrot Picker Machine',
             price: 25,
             isBought: false,
-
+            count: carrotPickerCount,
         },
         {
             name: 'Stealth Grow',
@@ -133,24 +140,25 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
             name: 'A Bigger Bucket',
             price: 15,
             isBought: false,
-
+            count: biggerBuckets,
         },
         {
             name: 'A Bigger Backpack',
             price: 10,
+            count: biggerBackpacks,
         },
         {
             name: 'A Carrot-Gathering Slave',
             price: 10,
             isBought: false,
-
-        }
+            count: carrotGatheringSlaves,
+        },
     ]
 
     const checkItemIsBought = () => {
 
     }
-  
+
 
 
     const buyItem = (itemName) => {
@@ -160,7 +168,8 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
             case 'Water Harvester':
                 if (carrotReducer >= 10) {
                     dispatch(decrementCarrot(10))
-                            incrementWaterMultiplier(.06)
+                    dispatch(incrementWaterMultiplier(.1))
+                    setWaterHarvesterCount(waterHarvesterCount+1)
                 }
                 break;
 
@@ -168,12 +177,14 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
                     dispatch(incrementCarrotMaxCounter(500))
+                    setBiggerBackpacks(biggerBackpacks+1)
                 }
                 break;
             case 'A Bigger Bucket':
                 if (carrotReducer > 14) {
                     dispatch(decrementCarrot(14))
                     dispatch(incrementWaterMaxCounter(50))
+                    setBiggerBuckets(biggerBuckets+1)
                 }
                 break;
             case 'Carrot Picker Machine':
@@ -181,22 +192,18 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer >= 10 && waterCounter >= 4) {
                     dispatch(decrementCarrot(10))
                     dispatch(decrementWater(4))
-                    dispatch(incrementCarrotMultiplier(.00003))
-                    dispatch(incrementWaterAttritionCounter(.00012))
-                    }
-                    else if (carrotReducer >= waterMaxCounter || waterCounter < 2) {
-                        console.log('water counter', waterCounter)
-                        // dispatch(decrementCarrot(carrotReducer%waterMaxCounter))
-                        clearInterval()
-                    }
-                
+                    dispatch(incrementCarrotMultiplier(.009))
+                    dispatch(incrementWaterAttritionCounter(.02))
+                    setCarrotPickerCount(carrotPickerCount+1)
+                }
                 break;
-                case 'A Carrot-Gathering Slave':
+            case 'A Carrot-Gathering Slave':
                 if (carrotReducer > 9 && waterCounter >= 2) {
                     dispatch(decrementCarrot(10))
-                    dispatch(incrementCarrotMultiplier(.00003))
+                    dispatch(incrementCarrotMultiplier(.002))
                     dispatch(decrementWater(2))
-                    dispatch(incrementWaterAttritionCounter(.0001))
+                    dispatch(incrementWaterAttritionCounter(.01))
+                    setCarrotGatheringSlaves(carrotGatheringSlaves+1)
                 }
                 break;
 
@@ -227,12 +234,14 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
     }
 
     return (
-        <UL open={open}>
-            {items.map((item) =>
-                <li className='shop-item' onClick={() => buyItem(item.name)}>{item.name} : {item.price}</li>
-            )}
+        <>
+            <UL open={open}>
+                {items.map((item) =>
+                    <li className='shop-item' onClick={() => buyItem(item.name)}>{item.name} : {item.price} <br /> count: {item.count}x</li>
+                )}
 
-        </UL>
+            </UL>
+        </>
     )
 
 }

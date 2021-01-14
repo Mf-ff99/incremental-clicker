@@ -1,4 +1,4 @@
-const waterMultiplier = (state = .00005, action) => {
+const waterMultiplier = (state = 0, action) => {
     switch(action.type) {
         case 'INCREMENT/water/multiplier':
             return state + action.payload

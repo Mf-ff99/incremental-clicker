@@ -144,8 +144,9 @@ const Game = () => {
 
             setInterval(() => {
                 if (carrotReducer < carrotMaxCounter && waterCounter > 2) {
-                    dispatch(incrementCarrot(carrotMultiplierReducer * carrotReducer))
-                    dispatch(incrementWater(waterMultiplier * waterCounter - waterAttritionCounter))
+                    dispatch(incrementCarrot(carrotMultiplierReducer%2))
+                    dispatch(incrementWater((waterMultiplier*1.2)))
+                    dispatch(decrementWater(waterAttritionCounter*2))
                 }
             }, 10000);
 

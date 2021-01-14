@@ -1,6 +1,6 @@
 // import {useSelector} from 'react-redux'
 
-const carrotReducer = (state = 10, action) => {
+const carrotReducer = (state = 100, action) => {
     switch(action.type) {
         case 'INCREMENT/carrot':
             return state + action.payload
