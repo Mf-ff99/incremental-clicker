@@ -160,9 +160,7 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 if (carrotReducer > 9) {
                     dispatch(decrementCarrot(10))
                     if (waterCounter < waterMaxCounter) {
-                        
                             incrementWaterMultiplier(.01)
-                        
                     }
                 }
                 break;
@@ -194,9 +192,10 @@ const MobileNav = ({ open, inventory, setWaterHarvesters }) => {
                 
                 break;
                 case 'A Carrot-Gathering Slave':
-                if (carrotReducer > 9) {
+                if (carrotReducer > 9 && waterCounter >= 2) {
                     dispatch(decrementCarrot(10))
                     dispatch(incrementCarrotMultiplier(.00005))
+                    dispatch(decrementWater(2))
                     if(waterCounter > 10) {
                         dispatch(decrementWaterMultiplier(.00007))
                     }
