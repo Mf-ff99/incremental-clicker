@@ -138,7 +138,7 @@ const Game = () => {
     }
 
     
-
+    
     if(carrotMaxCounter >= carrotReducer){
         if(waterCounter >= 2) {
 
